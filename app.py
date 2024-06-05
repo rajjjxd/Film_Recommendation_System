@@ -30,10 +30,7 @@ movies = pd.DataFrame(moviedict_list)
 
 similarity = pickle.load(open('similarity.pkl', 'rb'))
 
-# Title and Background Image Section
-st.title(" ")
-bg_image = "bgpic.jpg"
-st.image(bg_image, use_column_width=True)
+
 
 # Input Section
 st.sidebar.title('Enter the name of the Movie')
