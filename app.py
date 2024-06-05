@@ -30,29 +30,19 @@ movies = pd.DataFrame(moviedict_list)
 
 similarity = pickle.load(open('similarity.pkl', 'rb'))
 
-## HTML string to set the background image and style
-background_style = """
-<style>
-body {
-    background-image: url("heroku.jpg");
-    background-size: cover;
-    color: white;
-}
-</style>
-"""
+# Title and Background Image Section
+st.title(" ")
+bg_image = "bgpic.jpg"
+st.image(bg_image, use_column_width=True)
 
-# Inject custom HTML and CSS
+# Input Section
+st.sidebar.title('Enter the name of the Movie')
+selected_movie_name = st.sidebar.selectbox('Select Movie', movies['title'].values)
 
-# st.markdown(background_style, unsafe_allow_html=True)
-
-st.title('Movie Recommender System')
-
-selected_movie_name = st.selectbox(
-    'Enter the name of the Movie',
-    movies['title'].values)
-
-if st.button('Recommend'):
+# Recommendation Section
+if st.sidebar.button('Recommend'):
     names, posters = recommend(selected_movie_name)
+    st.title('Recommended Movies')
     cols = st.columns(5)
     for i, col in enumerate(cols):
         with col:
